@@ -1,0 +1,44 @@
+spring:
+  application:
+    name: consumer
+  config:
+    import: optional:file:.env[.properties]
+  kafka:
+    listener:
+      default-retry-template: false
+  data:
+    redis:
+      host: ${REDIS_HOST}
+      port: ${REDIS_PORT}
+    mongodb:
+      host: 127.0.0.1
+      port: 27017
+      database: orders
+  datasource:
+    username: ${POSTGRES_USERNAME:postgres}
+    password: ${POSTGRES_PASSWORD:postgres}
+    url: jdbc:postgresql://localhost:5432/${POSTGRES_URL:postgres}
+
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  prometheus:
+    metrics:
+      export:
+        enabled: true
+  tracing:
+    enabled: true
+    sampling:
+      probability: 1.0
+
+server:
+  port: 8082
+
+logging:
+  level:
+    kafka: debug
