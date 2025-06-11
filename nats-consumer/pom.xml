@@ -22,10 +22,15 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/io.nats/jnats -->
 		<dependency>
 			<groupId>io.nats</groupId>
-			<artifactId>java-nats-streaming</artifactId>
-			<version>2.2.3</version>
+			<artifactId>jnats</artifactId>
+			<version>2.21.2</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>

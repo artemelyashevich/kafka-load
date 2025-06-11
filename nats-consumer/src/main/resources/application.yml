@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: nats-consumer
+
+nats:
+  server: nats://localhost:4222
+  max-reconnect-attempts: 5
+  reconnect-wait-millis: 1000
+
+server:
+  port: 8085
