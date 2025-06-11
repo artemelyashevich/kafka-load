@@ -82,22 +82,23 @@ services:
     networks:
       - monitoring
 
-  postgres:
-    image: 'postgres:latest'
-    container_name: postgres
-    env_file:
-      - .env
-    environment:
-      POSTGRES_DB: ${POSTGRES_URL}
-      POSTGRES_USER: ${POSTGRES_USERNAME}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+  nats:
+    image: nats:latest
+    container_name: nats-server
     ports:
-      - "5432:5432"
+      - "4222:4222"
+      - "8222:8222"
+    command: "--jetstream"
     volumes:
-      - postgresdata:/var/lib/postgresql/data
+      - nats-data:/var/lib/nats
+    healthcheck:
+      test: [ "CMD", "nats", "ping" ]
+      interval: 5s
+      timeout: 3s
+      retries: 3
 
 volumes:
-  postgresdata:
+  nats-data:
   grafana-storage:
   kafka_data:
     driver: local
