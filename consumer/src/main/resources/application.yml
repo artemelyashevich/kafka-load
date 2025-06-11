@@ -14,10 +14,6 @@ spring:
       host: 127.0.0.1
       port: 27017
       database: orders
-  datasource:
-    username: ${POSTGRES_USERNAME:postgres}
-    password: ${POSTGRES_PASSWORD:postgres}
-    url: jdbc:postgresql://localhost:5432/${POSTGRES_URL:postgres}
 
 management:
   endpoint:

@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: producer-statistics
+  data:
+    mongodb:
+      host: 127.0.0.1
+      port: 27017
+      database: orders
+
+server:
+  port: 8083
