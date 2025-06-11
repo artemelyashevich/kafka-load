@@ -23,6 +23,8 @@ public class ProducerStatisticsServiceImpl implements ProducerStatisticsService 
 
     @Override
     public List<TopOrdersByCategoryQuantityAggregation> findTopOrdersByCategoryRevenue(String collectionName) {
+        log.debug("Attempting find top orders by category revenue aggregation");
+
         var aggregation = Aggregation.newAggregation(
                 Aggregation.group("category.$id")
                         .sum("quantity").as(TOTAL_QUANTITY),
@@ -34,19 +36,30 @@ public class ProducerStatisticsServiceImpl implements ProducerStatisticsService 
                 Aggregation.sort(Sort.Direction.DESC, TOTAL_QUANTITY)
         );
 
-        return mongoTemplate.aggregate(aggregation, collectionName, TopOrdersByCategoryQuantityAggregation.class)
+        var result = this.mongoTemplate
+                .aggregate(aggregation, collectionName, TopOrdersByCategoryQuantityAggregation.class)
                 .getMappedResults();
+
+        log.info("Found {} top orders by category revenue aggregation", result.size());
+        return result;
     }
 
     @Override
     public List<TopOrdersByQuantityAggregation> findTopOrdersByQuantityRevenue(String collectionName) {
+        log.debug("Attempting find top orders by quantity revenue aggregation");
+
         var aggregation = Aggregation.newAggregation(
                 Aggregation.group("$productName")
                         .sum("quantity").as(TOTAL_SOLD),
                 Aggregation.sort(Sort.Direction.DESC, TOTAL_SOLD),
                 Aggregation.limit(10)
         );
-        return mongoTemplate.aggregate(aggregation, collectionName, TopOrdersByQuantityAggregation.class)
+
+        var result = this.mongoTemplate
+                .aggregate(aggregation, collectionName, TopOrdersByQuantityAggregation.class)
                 .getMappedResults();
+
+        log.info("Found {} top orders by quantity revenue aggregation", result.size());
+        return result;
     }
 }
