@@ -12,3 +12,6 @@ scrape_configs:
       - targets: [ '172.17.0.1:8082' ]
         labels:
           service: 'kafka-consumer'
+      - targets: [ '172.17.0.1:8083' ]
+        labels:
+          service: 'producer-statistics'
