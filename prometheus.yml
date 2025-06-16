@@ -15,3 +15,9 @@ scrape_configs:
       - targets: [ '172.17.0.1:8083' ]
         labels:
           service: 'producer-statistics'
+      - targets: [ '172.17.0.1:8085' ]
+        labels:
+          service: 'nats-consumer'
+      - targets: [ '172.17.0.1:8086' ]
+        labels:
+          service: 'nats-producer'

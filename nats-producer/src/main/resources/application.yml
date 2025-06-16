@@ -2,6 +2,23 @@ spring:
   application:
     name: nats-producer
 
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  prometheus:
+    metrics:
+      export:
+        enabled: true
+  tracing:
+    enabled: true
+    sampling:
+      probability: 1.0
+
 nats:
   server: nats://localhost:4222
   max-reconnect-attempts: 5

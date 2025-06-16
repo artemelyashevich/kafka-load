@@ -8,6 +8,8 @@
         <option value="$PROJECT_DIR$/producer/pom.xml" />
         <option value="$PROJECT_DIR$/consumer/pom.xml" />
         <option value="$PROJECT_DIR$/producer-statistics/pom.xml" />
+        <option value="$PROJECT_DIR$/nats-producer/pom.xml" />
+        <option value="$PROJECT_DIR$/nats-consumer/pom.xml" />
       </list>
     </option>
   </component>
